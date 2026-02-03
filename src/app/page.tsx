@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Patient } from '@/types'
 import AddPatientModal from '@/components/AddPatientModal'
+import Link from 'next/link'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -126,16 +127,18 @@ export default function Home() {
         ) : (
           <div className={styles.grid}>
             {patients.map((patient) => (
-              <div key={patient.id} className={styles.card}>
-                <div className={styles.cardHeader}>
-                  <h3>{patient.family_name}, {patient.first_name}</h3>
-                  <span className={styles.genderBadge}>{patient.gender === 'Male' ? 'M' : 'F'}</span>
+              <Link href={`/patient/${patient.id}`} key={patient.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <h3>{patient.family_name}, {patient.first_name}</h3>
+                    <span className={styles.genderBadge}>{patient.gender === 'Male' ? 'M' : 'F'}</span>
+                  </div>
+                  <div className={styles.cardBody}>
+                    <p><strong>CNP:</strong> {patient.cnp || 'N/A'}</p>
+                    <p><strong>DOB:</strong> {patient.date_of_birth || 'N/A'}</p>
+                  </div>
                 </div>
-                <div className={styles.cardBody}>
-                  <p><strong>CNP:</strong> {patient.cnp || 'N/A'}</p>
-                  <p><strong>DOB:</strong> {patient.date_of_birth || 'N/A'}</p>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}

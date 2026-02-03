@@ -1,0 +1,140 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--surface);
+    color: var(--foreground);
+  }
+  
+  /* Header Section */
+  .header {
+    padding: 32px 24px;
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .headerContent {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .avatarPlaceholder {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: #f1f5f9; /* Slate-100 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8; /* Slate-400 */
+    border: 4px solid white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .name {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+  
+  /* Tab Navigation */
+  .tabs {
+    display: flex;
+    gap: 32px;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--background);
+    margin-top: -1px;
+  }
+  
+  .tabBtn {
+    background: none;
+    border: none;
+    padding: 16px 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+  }
+  
+  .tabBtn:hover {
+    color: var(--foreground);
+  }
+  
+  .tabBtn.active {
+    color: var(--primary);
+  }
+  
+  .tabBtn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary);
+  }
+  
+  /* Content Area */
+  .content {
+    padding: 32px 24px;
+    flex: 1;
+    overflow-y: auto;
+    background-color: var(--surface);
+  }
+  
+  .sectionTitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  
+  /* NEW: Vertical Table-Like List */
+  .detailsContainer {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background-color: var(--background);
+    overflow: hidden; /* Ensures children don't overflow corners */
+  }
+  
+  .detailRow {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* Fixed label width, flexible content */
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  
+  .detailRow:last-child {
+    border-bottom: none;
+  }
+  
+  .detailLabel {
+    color: #64748b;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .detailValue {
+    color: var(--foreground);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  /* Clinical Placeholders */
+  .placeholderCard {
+    text-align: center;
+    padding: 40px;
+    background: var(--background);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: #64748b;
+  }
