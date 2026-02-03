@@ -7,7 +7,6 @@ export type Patient = {
   cnp: string | null
   date_of_birth: string | null
   gender: string | null
-  mrn: string | null
 }
 
 export type Encounter = {

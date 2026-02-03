@@ -134,7 +134,6 @@ export default function Home() {
                 <div className={styles.cardBody}>
                   <p><strong>CNP:</strong> {patient.cnp || 'N/A'}</p>
                   <p><strong>DOB:</strong> {patient.date_of_birth || 'N/A'}</p>
-                  <p><strong>MRN:</strong> {patient.mrn || 'N/A'}</p>
                 </div>
               </div>
             ))}

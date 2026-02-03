@@ -21,8 +21,7 @@ export default function AddPatientModal({ isOpen, onClose, onSuccess }: AddPatie
     family_name: '',
     cnp: '',
     date_of_birth: '',
-    gender: 'Male',
-    mrn: ''
+    gender: 'Male'
   })
 
   if (!isOpen) return null
@@ -49,8 +48,7 @@ export default function AddPatientModal({ isOpen, onClose, onSuccess }: AddPatie
           family_name: formData.family_name,
           cnp: formData.cnp,
           date_of_birth: formData.date_of_birth,
-          gender: formData.gender,
-          mrn: formData.mrn
+          gender: formData.gender
         }
       ])
 
@@ -62,7 +60,7 @@ export default function AddPatientModal({ isOpen, onClose, onSuccess }: AddPatie
       onSuccess()
       onClose()
       setFormData({
-        first_name: '', family_name: '', cnp: '', date_of_birth: '', gender: 'Male', mrn: ''
+        first_name: '', family_name: '', cnp: '', date_of_birth: '', gender: 'Male'
       })
     }
   }
@@ -101,10 +99,7 @@ export default function AddPatientModal({ isOpen, onClose, onSuccess }: AddPatie
               <label>CNP</label>
               <input name="cnp" placeholder="13 digits" value={formData.cnp} onChange={handleChange} />
             </div>
-            <div className={styles.field}>
-              <label>Medical Record #</label>
-              <input name="mrn" placeholder="Hospital ID" value={formData.mrn} onChange={handleChange} />
-            </div>
+            {/* Removed MRN field to match database schema */}
           </div>
 
           <div className={styles.row}>
