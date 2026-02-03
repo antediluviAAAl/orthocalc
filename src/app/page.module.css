@@ -1,0 +1,233 @@
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+/* --- Header Section --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.titleGroup h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.doctorBadge {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.875rem;
+  color: var(--primary);
+  font-weight: 500;
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* --- Buttons --- */
+.primaryBtn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.secondaryBtn:hover {
+  background-color: var(--surface);
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.logoutBtn:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* --- Patient Grid --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.genderBadge {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.cardBody p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* --- Empty State --- */
+.emptyState {
+  text-align: center;
+  padding: 60px;
+  background-color: var(--surface);
+  border-radius: 12px;
+  border: 2px dashed var(--border);
+}
+
+.emptyState button {
+  margin-top: 16px;
+  color: var(--primary);
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- Login Screen --- */
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--surface);
+}
+
+.loginCard {
+  background-color: var(--background);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.loginTitle {
+  margin: 0;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.loginSubtitle {
+  text-align: center;
+  color: var(--foreground);
+  opacity: 0.6;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--foreground);
+  font-size: 1rem;
+}
+
+.authButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
