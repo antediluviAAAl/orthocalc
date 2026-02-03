@@ -1,0 +1,379 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./src/components/AddPatientModal.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.AddPatientModal_overlay__Km8_U {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  animation: AddPatientModal_fadeIn__EP0sl 0.2s ease-out;
+}
+
+.AddPatientModal_modal__8TAt2 {
+  background-color: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  animation: AddPatientModal_slideUp___fR1Z 0.3s ease-out;
+}
+
+.AddPatientModal_header__w5zxc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.AddPatientModal_header__w5zxc h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.AddPatientModal_closeBtn__PvTVc {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.AddPatientModal_closeBtn__PvTVc:hover {
+  opacity: 1;
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.AddPatientModal_form__fbMHU {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.AddPatientModal_row__f8z7U {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  gap: 16px;
+}
+
+.AddPatientModal_field__bUcAz {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.AddPatientModal_field__bUcAz label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.AddPatientModal_field__bUcAz input,
+.AddPatientModal_field__bUcAz select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.AddPatientModal_field__bUcAz input:focus,
+.AddPatientModal_field__bUcAz select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.AddPatientModal_submitBtn___noPg {
+  margin-top: 8px;
+  padding: 10px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.AddPatientModal_submitBtn___noPg:hover {
+  opacity: 0.9;
+}
+
+.AddPatientModal_submitBtn___noPg:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.AddPatientModal_error__zYWJn {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+@keyframes AddPatientModal_fadeIn__EP0sl {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes AddPatientModal_slideUp___fR1Z {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./src/app/page.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.page_main__GlU4n {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+/* --- Header Section --- */
+.page_header__kVzhN {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page_titleGroup__64cIF h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page_doctorBadge__xXHhu {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.875rem;
+  color: var(--primary);
+  font-weight: 500;
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+.page_actions__e35f9 {
+  display: flex;
+  gap: 12px;
+}
+
+/* --- Buttons --- */
+.page_primaryBtn__smNNv {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.page_primaryBtn__smNNv:hover {
+  opacity: 0.9;
+}
+
+.page_secondaryBtn__Re3F8 {
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.page_secondaryBtn__Re3F8:hover {
+  background-color: var(--surface);
+}
+
+.page_logoutBtn__W5nCV {
+  background: none;
+  border: none;
+  color: var(--foreground);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.page_logoutBtn__W5nCV:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* --- Patient Grid --- */
+.page_grid__f5Kdy {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 24px;
+  gap: 24px;
+}
+
+.page_card__QV0Om {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.page_card__QV0Om:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
+}
+
+.page_cardHeader__NhxBC {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page_cardHeader__NhxBC h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.page_genderBadge__Yn_4S {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.page_cardBody__v_3HE p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* --- Empty State --- */
+.page_emptyState__Zyc7X {
+  text-align: center;
+  padding: 60px;
+  background-color: var(--surface);
+  border-radius: 12px;
+  border: 2px dashed var(--border);
+}
+
+.page_emptyState__Zyc7X button {
+  margin-top: 16px;
+  color: var(--primary);
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- Login Screen --- */
+.page_loginContainer__MG55o {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--surface);
+}
+
+.page_loginCard__1Q2Um {
+  background-color: var(--background);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.page_loginTitle__Fg5lJ {
+  margin: 0;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.page_loginSubtitle__hLoIy {
+  text-align: center;
+  color: var(--foreground);
+  opacity: 0.6;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.page_loginForm___wi10 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page_input___cVLA {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--foreground);
+  font-size: 1rem;
+}
+
+.page_authButtons__3bCTF {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.page_loading__Q7rym {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+.page_error__Jil8M {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
