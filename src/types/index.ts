@@ -1,4 +1,6 @@
-export type Patient = {
+// src/types/index.ts
+
+export interface Patient {
   id: string
   created_at: string
   doctor_id: string
@@ -9,7 +11,7 @@ export type Patient = {
   gender: string | null
 }
 
-export type Encounter = {
+export interface Encounter {
   id: string
   patient_id: string
   encounter_date: string
@@ -18,12 +20,12 @@ export type Encounter = {
   notes: string | null
 }
 
-export type Observation = {
+export interface Observation {
   id: string
-  created_at: string
   encounter_id: string
-  code: string | null
-  input_data: any // JSONB data
-  result_data: any // JSONB data
-  interpretation: string | null
+  calculation_type: string | null
+  // JSONB columns in SQL allow flexible typing
+  inputs: Record<string, any>
+  results: Record<string, any>
+  observation_date: string
 }

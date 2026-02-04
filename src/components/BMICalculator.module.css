@@ -1,0 +1,283 @@
+/* src/components/BMICalculator.module.css */
+.container {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0;
+  }
+  
+  .badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .badge, .badgePeds, .badgeInfant {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  
+  .badge { background: #e2e8f0; color: #64748b; }
+  .badgePeds { background: #e0f2fe; color: #0369a1; }
+  .badgeInfant { background: #fee2e2; color: #991b1b; }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .inputGroup label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+  }
+  
+  .input {
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  /* Results */
+  .resultContainer {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  
+  .mainResult {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .valueGroup {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+  
+  .bmiValue {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+  }
+  
+  .bmiUnit {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+  
+  .categoryPill {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 99px;
+  }
+  
+  /* Semantic Colors */
+  .blue { background: #bfdbfe; color: #1d4ed8; }
+  .green { background: #bbf7d0; color: #15803d; }
+  .yellow { background: #fef08a; color: #a16207; }
+  .red { background: #fecaca; color: #b91c1c; }
+  .gray { background: #f1f5f9; color: #64748b; }
+  
+  /* Infant Warning */
+  .infantWarning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    color: #b45309;
+    background: #fffbeb;
+  }
+  
+  .rawBmi {
+    margin-top: 0.5rem;
+    font-family: monospace;
+    color: #78350f;
+    font-weight: 600;
+  }
+  
+  /* Pediatric Bar */
+  .pedsContext {
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+  }
+  
+  .percentileRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #475569;
+  }
+  
+  .percentileRow strong { color: #0f172a; }
+  
+  .barContainer {
+    position: relative;
+    height: 24px;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .barSegments {
+    display: flex;
+    height: 8px;
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    position: absolute;
+    top: 8px;
+  }
+  
+  .seg { height: 100%; }
+  
+  .marker {
+    position: absolute;
+    top: 0;
+    width: 4px;
+    height: 24px;
+    background: #0f172a;
+    border: 1px solid white;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: left 0.3s ease-out;
+  }
+  
+  .barLabels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    font-size: 0.7rem;
+    color: #94a3b8;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .cancelBtn {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .saveBtn {
+    padding: 0.75rem 1.5rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .saveBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .titleGroup {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subTitle {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+  
+  .placeholder {
+    padding: 1.5rem;
+    background: #f1f5f9;
+    border-radius: 8px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Updated Bar Styling */
+  .barLabels {
+    position: relative;
+    height: 20px;
+    margin-top: 4px;
+    font-size: 0.7rem;
+    color: #94a3b8;
+  }
+  
+  .barLabels span {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+  
+  .marker {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: #0f172a;
+    z-index: 10;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .markerHead {
+    position: absolute;
+    top: -4px;
+    left: -3px;
+    width: 8px;
+    height: 8px;
+    background: #0f172a;
+    border-radius: 50%;
+  }
