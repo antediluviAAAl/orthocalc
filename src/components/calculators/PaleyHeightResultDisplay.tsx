@@ -1,3 +1,4 @@
+// src/components/PaleyHeightResultDisplay.tsx
 'use client'
 
 import { PaleyHeightResult, formatImperial } from '@/lib/engines/paley_engine'
@@ -61,7 +62,14 @@ export default function PaleyHeightResultDisplay({ result }: PaleyHeightResultDi
 
       {/* 3. Metadata & Definitions */}
       <div className={styles.metaContainer}>
-        <h5 className={styles.metaTitle}>Methodology: Paley Multiplier (Height)</h5>
+        {/* UPDATED HEADER with Description */}
+        <h5 className={styles.metaTitle}>
+            METHODOLOGY: Paley Multiplier (Height)
+            <FormulaPopover 
+                title="Paley Multiplier Method"
+                description="The Paley Multiplier method predicts adult height by multiplying the current height by a specific coefficient corresponding to the patient's age and gender."
+            />
+        </h5>
         
         <div className={styles.metaGrid}>
           

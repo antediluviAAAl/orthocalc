@@ -1,3 +1,4 @@
+// src/components/BMIResultDisplay.tsx
 'use client'
 
 import { BmiResult } from '@/lib/engines/bmi_engine'
@@ -36,22 +37,27 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
     ? new Date(meta.reference_date).toLocaleDateString() 
     : 'N/A';
 
-  // --- THEORETICAL FORMULAS ---
-  // We only want the generic algebra, no numbers filled in.
+  // --- FORMULA & METHODOLOGY STRINGS ---
   let genericLatex = ''
-  
+  let methodologyTitle = ''
+  let methodologyDesc = ''
+
   if (demographics.isPediatric) {
-    // CDC LMS Z-Score
+    // CDC LMS
     genericLatex = `Z = \\frac{(\\frac{BMI}{M})^L - 1}{L \\cdot S}`
+    methodologyTitle = `METHODOLOGY: ${meta.methodology}`
+    methodologyDesc = "The CDC LMS method constructs growth percentiles using three smoothed curves: Lambda (L) for skew, Mu (M) for median, and Sigma (S) for variation."
   } else {
     // Standard BMI
     genericLatex = `BMI = \\frac{weight}{height^2}`
+    methodologyTitle = `METHODOLOGY: ${meta.methodology}`
+    methodologyDesc = "Standard calculation based on the World Health Organization (WHO) definitions for adult body mass index."
   }
 
   return (
     <div className={styles.resultContainer}>
       
-      {/* SECTION 1: MEASUREMENTS */}
+      {/* 1. MEASUREMENTS (Read-only inputs) */}
       <div className={styles.measurementsRow}>
         <div className={styles.measureItem}>
           <span className={styles.measureLabel}>Height</span>
@@ -69,13 +75,13 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
 
       <div className={styles.divider} />
 
-      {/* SECTION 2: THE MAIN RESULT (BMI) */}
+      {/* 2. MAIN RESULT (BMI) */}
       <div className={styles.mainResult}>
         <div className={styles.valueGroup}>
-            <div style={{display: 'flex', alignItems: 'center', gap: '5px'}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
                <span className={styles.bmiValue}>{result.bmi ?? 'N/A'}</span>
                
-               {/* Only show standard formula popup if NOT pediatric (since peds focuses on Z-score) */}
+               {/* ADULT ONLY: Formula Audit on BMI Metric */}
                {!demographics.isPediatric && (
                  <FormulaPopover 
                     title="BMI Formula (WHO)"
@@ -90,7 +96,7 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
         </div>
       </div>
 
-      {/* SECTION 3: PEDIATRIC CONTEXT (Z-SCORE) */}
+      {/* 3. PEDIATRIC CONTEXT (Visual Bar & Z-Score) */}
       {demographics.isPediatric && result.percentile !== undefined && (
         <div className={styles.pedsContext}>
           <div className={styles.percentileRow}>
@@ -98,7 +104,7 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
             
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <span>Z-Score: <strong>{result.zScore} SD</strong></span>
-                {/* Z-Score Formula Popup */}
+                {/* PEDIATRIC: Formula Audit on Z-Score Metric */}
                 <FormulaPopover 
                     title="CDC LMS Z-Score Formula"
                     formula={genericLatex}
@@ -130,23 +136,19 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
         </div>
       )}
 
-      {/* SECTION 4: METADATA & PARAMETERS */}
+      {/* 4. METHODOLOGY & PARAMETERS (Exact match to Paley style) */}
       <div className={styles.metaContainer}>
-        <h5 className={styles.metaTitle}>Calculation Details</h5>
-        
+        {/* Unified Title with Info Popover */}
+        <h5 className={styles.metaTitle}>
+           {methodologyTitle}
+           <FormulaPopover 
+              title="Methodology Description"
+              description={methodologyDesc}
+           />
+        </h5>
+
         <div className={styles.metaGrid}>
           
-          <div className={styles.metaItem}>
-            <div style={{display: 'flex', alignItems: 'center'}}>
-                <span className={styles.metaLabel}>Method</span>
-                <FormulaPopover 
-                  title="CDC LMS Method"
-                  description="The LMS method constructs growth percentiles using three smoothed curves: Lambda (L) for skew, Mu (M) for median, and Sigma (S) for variation."
-                />
-            </div>
-            <span className={styles.metaValue}>{meta.methodology}</span>
-          </div>
-
           <div className={styles.metaItem}>
              <span className={styles.metaLabel}>Exact Age</span>
              <span className={styles.metaValue}>
