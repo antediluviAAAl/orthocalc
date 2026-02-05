@@ -9,6 +9,7 @@ export interface Patient {
   cnp: string | null
   date_of_birth: string | null
   gender: string | null
+  county: string | null // Added new field
 }
 
 export interface Encounter {

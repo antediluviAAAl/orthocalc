@@ -1,137 +1,148 @@
+/* src/components/AddPatientModal.module.css */
+
 .overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
-  animation: fadeIn 0.2s ease-out;
+  z-index: 1000;
 }
 
 .modal {
   background-color: var(--surface);
-  color: var(--foreground);
-  border: 1px solid var(--border);
+  padding: 30px;
   border-radius: 12px;
-  padding: 24px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .header h2 {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--foreground);
 }
 
 .closeBtn {
   background: none;
   border: none;
-  color: var(--foreground);
-  opacity: 0.5;
   cursor: pointer;
+  color: #666;
   padding: 4px;
-  border-radius: 50%;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 4px;
 }
 
 .closeBtn:hover {
-  opacity: 1;
-  background-color: rgba(128, 128, 128, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  display: flex;
+  gap: 15px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  flex: 1;
 }
 
 .field label {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  opacity: 0.8;
+  color: #666;
 }
 
 .field input,
 .field select {
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: 10px;
   border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
   background-color: var(--background);
   color: var(--foreground);
-  font-size: 0.9rem;
-  transition: border-color 0.2s;
 }
 
-.field input:focus,
-.field select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+/* --- New Styles for CNP Validation --- */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
+
+.inputWrapper input {
+  width: 100%;
+  padding-right: 40px; /* Make space for the icon */
+}
+
+.validationIcon {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Let clicks pass through to input */
+}
+
+.validationMsg {
+  font-size: 0.8rem;
+  margin-top: 4px;
+  color: #dc2626; /* Red for error */
+}
+
+.validationMsg.success {
+  color: #16a34a; /* Green for success */
+}
+
+/* ------------------------------------- */
 
 .submitBtn {
-  margin-top: 8px;
-  padding: 10px;
   background-color: var(--primary);
   color: white;
+  padding: 12px;
   border: none;
   border-radius: 6px;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  margin-top: 10px;
+  transition: background-color 0.2s;
 }
 
-.submitBtn:hover {
+.submitBtn:hover:not(:disabled) {
   opacity: 0.9;
 }
 
 .submitBtn:disabled {
-  opacity: 0.5;
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
 .error {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  padding: 10px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px;
   border-radius: 6px;
-  font-size: 0.875rem;
-  margin-bottom: 16px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  font-size: 0.9rem;
+  margin-bottom: 20px;
 }
