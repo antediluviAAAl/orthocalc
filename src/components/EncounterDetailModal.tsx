@@ -5,9 +5,12 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Encounter, Observation, Patient } from '@/types'
 import { BmiResult } from '@/lib/bmi_engine'
+import { PaleyHeightResult } from '@/lib/paley_engine' // <--- IMPORT THIS
 import { X, Plus, Calculator, ChevronDown, ChevronUp, Trash2 } from 'lucide-react'
 import BMICalculator from './BMICalculator'
 import BMIResultDisplay from './BMIResultDisplay'
+import PaleyHeightCalculator from './PaleyHeightCalculator' // <--- IMPORT THIS
+import PaleyHeightResultDisplay from './PaleyHeightResultDisplay' // <--- IMPORT THIS
 import styles from './EncounterDetailModal.module.css'
 
 interface EncounterDetailModalProps {
@@ -125,13 +128,24 @@ export default function EncounterDetailModal({ encounter, patient, isOpen, onClo
                   onChange={(e) => setSelectedCalc(e.target.value)}
                 >
                   <option value="bmi">Body Mass Index (BMI)</option>
-                  <option value="paley" disabled>Paley Multiplier (Phase 2.1)</option>
+                  <option value="paley_height">Paley Adult Height Prediction</option>
                 </select>
               </div>
 
               {selectedCalc === 'bmi' && patient && (
                 <BMICalculator 
                   dob={patient.date_of_birth} 
+                  gender={patient.gender}
+                  referenceDate={encounter.encounter_date}
+                  onSave={handleSaveObservation}
+                  onCancel={() => setIsAdding(false)}
+                />
+              )}
+
+              {/* NEW: PALEY HEIGHT CALCULATOR */}
+              {selectedCalc === 'paley_height' && patient && (
+                <PaleyHeightCalculator
+                  dob={patient.date_of_birth}
                   gender={patient.gender}
                   referenceDate={encounter.encounter_date}
                   onSave={handleSaveObservation}
@@ -148,6 +162,13 @@ export default function EncounterDetailModal({ encounter, patient, isOpen, onClo
             ) : (
               observations.map(obs => {
                 const isExpanded = expandedObs === obs.id
+                // Helper to get friendly title
+                const getTitle = (type: string) => {
+                    if (type === 'bmi') return 'Body Mass Index'
+                    if (type === 'paley_height') return 'Adult Height Prediction'
+                    return type
+                }
+
                 return (
                   <div 
                     key={obs.id} 
@@ -161,15 +182,25 @@ export default function EncounterDetailModal({ encounter, patient, isOpen, onClo
                            <Calculator size={18} />
                          </div>
                          <div className={styles.obsTextGroup}>
-                            <h4 className={styles.obsTitle}>
-                              {obs.calculation_type === 'bmi' ? 'Body Mass Index' : obs.calculation_type}
-                            </h4>
+                            <h4 className={styles.obsTitle}>{getTitle(obs.calculation_type)}</h4>
+                            
                             <div className={styles.obsSummary}>
+                              {/* BMI SUMMARY */}
                               {obs.calculation_type === 'bmi' && (
                                 <>
                                   <span className={styles.summaryValue}>{obs.results.bmi}</span>
                                   <span className={styles.summaryDot}>•</span>
                                   <span className={styles.summaryCategory}>{obs.results.category}</span>
+                                </>
+                              )}
+                              
+                              {/* PALEY HEIGHT SUMMARY (NEW) */}
+                              {obs.calculation_type === 'paley_height' && (
+                                <>
+                                  <span className={styles.summaryCategory}>Pred:</span>
+                                  <span className={styles.summaryValue}>{obs.results.predicted_height_cm}cm</span>
+                                  <span className={styles.summaryDot}>•</span>
+                                  <span className={styles.summaryCategory}>Growth Left: {obs.results.growth_remaining_cm}cm</span>
                                 </>
                               )}
                             </div>
@@ -202,6 +233,11 @@ export default function EncounterDetailModal({ encounter, patient, isOpen, onClo
                             <BMIResultDisplay 
                               result={obs.results as BmiResult} 
                               inputs={obs.inputs} 
+                            />
+                         )}
+                         {obs.calculation_type === 'paley_height' && (
+                            <PaleyHeightResultDisplay 
+                              result={obs.results as PaleyHeightResult} 
                             />
                          )}
                       </div>
