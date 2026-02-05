@@ -163,7 +163,7 @@ export default function EncounterDetailModal({ encounter, patient, isOpen, onClo
               observations.map(obs => {
                 const isExpanded = expandedObs === obs.id
                 // Helper to get friendly title
-                const getTitle = (type: string) => {
+                const getTitle = (type: string | null) => {
                     if (type === 'bmi') return 'Body Mass Index'
                     if (type === 'paley_height') return 'Adult Height Prediction'
                     return type
