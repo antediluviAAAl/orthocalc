@@ -99,7 +99,6 @@ export default function AddPatientModal({ isOpen, onClose, onSuccess }: AddPatie
               <label>CNP</label>
               <input name="cnp" placeholder="13 digits" value={formData.cnp} onChange={handleChange} />
             </div>
-            {/* Removed MRN field to match database schema */}
           </div>
 
           <div className={styles.row}>
