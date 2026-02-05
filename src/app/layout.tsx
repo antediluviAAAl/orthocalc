@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+// IMPORT KATEX CSS GLOBALLY
+import 'katex/dist/katex.min.css'; 
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "OrthoCalc",
-  description: "Orthopedic Calculation & Patient Management",
+  description: "Orthopedic Clinical Calculator",
 };
 
 export default function RootLayout({
@@ -15,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         {children}
         {modal}
       </body>

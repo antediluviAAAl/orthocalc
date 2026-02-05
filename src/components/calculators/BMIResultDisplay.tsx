@@ -1,28 +1,24 @@
-// src/components/calculators/BMIResultDisplay.tsx
 'use client'
 
 import { BmiResult } from '@/lib/engines/bmi_engine'
 import styles from './BMICalculator.module.css' 
+import FormulaPopover from './FormulaPopover'
 
 interface BMIResultDisplayProps {
   result: BmiResult
-  inputs: any // { height_cm, weight_kg, ... }
+  inputs: any 
 }
 
 export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayProps) {
-  // Safety checks
   if (!result) return null;
 
-  const demographics = result.demographics || { 
-    isPediatric: false, 
-    ageMonths: 0 
-  };
-  
-  const meta = result.meta || {
-    methodology: 'Legacy Calculation',
-    formula: 'N/A',
-    reference_date: null,
-    exact_age_months: 0
+  const demographics = result.demographics || { isPediatric: false };
+  const meta = result.meta || { 
+    methodology: 'Legacy', 
+    formula: 'N/A', 
+    reference_date: null, 
+    exact_age_months: 0,
+    lms_parameters: { l: 0, m: 0, s: 0 }
   };
 
   const getCategoryStyle = (cat: string) => {
@@ -40,10 +36,22 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
     ? new Date(meta.reference_date).toLocaleDateString() 
     : 'N/A';
 
+  // --- THEORETICAL FORMULAS ---
+  // We only want the generic algebra, no numbers filled in.
+  let genericLatex = ''
+  
+  if (demographics.isPediatric) {
+    // CDC LMS Z-Score
+    genericLatex = `Z = \\frac{(\\frac{BMI}{M})^L - 1}{L \\cdot S}`
+  } else {
+    // Standard BMI
+    genericLatex = `BMI = \\frac{weight}{height^2}`
+  }
+
   return (
     <div className={styles.resultContainer}>
       
-      {/* SECTION 1: MEASUREMENTS (Inputs) */}
+      {/* SECTION 1: MEASUREMENTS */}
       <div className={styles.measurementsRow}>
         <div className={styles.measureItem}>
           <span className={styles.measureLabel}>Height</span>
@@ -61,10 +69,20 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
 
       <div className={styles.divider} />
 
-      {/* SECTION 2: THE BIG RESULT */}
+      {/* SECTION 2: THE MAIN RESULT (BMI) */}
       <div className={styles.mainResult}>
         <div className={styles.valueGroup}>
-            <span className={styles.bmiValue}>{result.bmi ?? 'N/A'}</span>
+            <div style={{display: 'flex', alignItems: 'center', gap: '5px'}}>
+               <span className={styles.bmiValue}>{result.bmi ?? 'N/A'}</span>
+               
+               {/* Only show standard formula popup if NOT pediatric (since peds focuses on Z-score) */}
+               {!demographics.isPediatric && (
+                 <FormulaPopover 
+                    title="BMI Formula (WHO)"
+                    formula={genericLatex}
+                 />
+               )}
+            </div>
             <span className={styles.bmiUnit}>kg/m²</span>
         </div>
         <div className={`${styles.categoryPill} ${getCategoryStyle(result.category)}`}>
@@ -72,12 +90,20 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
         </div>
       </div>
 
-      {/* SECTION 3: PEDIATRIC GRAPH (Conditional) */}
+      {/* SECTION 3: PEDIATRIC CONTEXT (Z-SCORE) */}
       {demographics.isPediatric && result.percentile !== undefined && (
         <div className={styles.pedsContext}>
           <div className={styles.percentileRow}>
             <span>Percentile: <strong>{result.percentile}th</strong></span>
-            <span>Z-Score: <strong>{result.zScore} SD</strong></span>
+            
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span>Z-Score: <strong>{result.zScore} SD</strong></span>
+                {/* Z-Score Formula Popup */}
+                <FormulaPopover 
+                    title="CDC LMS Z-Score Formula"
+                    formula={genericLatex}
+                />
+            </div>
           </div>
           
           <div className={styles.barContainer}>
@@ -104,23 +130,23 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
         </div>
       )}
 
-      {/* SECTION 4: METADATA & FORMULA */}
+      {/* SECTION 4: METADATA & PARAMETERS */}
       <div className={styles.metaContainer}>
         <h5 className={styles.metaTitle}>Calculation Details</h5>
         
-        {/* The Formula Block */}
-        {meta.formula && meta.formula !== 'N/A' && (
-           <div className={styles.formulaBlock}>
-              <span className={styles.formulaLabel}>Formula:</span>
-              <code className={styles.formulaCode}>{meta.formula}</code>
-           </div>
-        )}
-
         <div className={styles.metaGrid}>
+          
           <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Method</span>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+                <span className={styles.metaLabel}>Method</span>
+                <FormulaPopover 
+                  title="CDC LMS Method"
+                  description="The LMS method constructs growth percentiles using three smoothed curves: Lambda (L) for skew, Mu (M) for median, and Sigma (S) for variation."
+                />
+            </div>
             <span className={styles.metaValue}>{meta.methodology}</span>
           </div>
+
           <div className={styles.metaItem}>
              <span className={styles.metaLabel}>Exact Age</span>
              <span className={styles.metaValue}>
@@ -133,15 +159,35 @@ export default function BMIResultDisplay({ result, inputs }: BMIResultDisplayPro
           {meta.lms_parameters && (
              <>
                <div className={styles.metaItem}>
-                 <span className={styles.metaLabel}>L (Power)</span>
+                 <div style={{display: 'flex', alignItems: 'center'}}>
+                    <span className={styles.metaLabel}>L (Power)</span>
+                    <FormulaPopover 
+                      title="Lambda (L)"
+                      description="The Box-Cox power parameter. It accounts for the skewness of the BMI distribution at this specific age and sex."
+                    />
+                 </div>
                  <span className={styles.metaValue}>{meta.lms_parameters.l}</span>
                </div>
+
                <div className={styles.metaItem}>
-                 <span className={styles.metaLabel}>M (Median)</span>
+                 <div style={{display: 'flex', alignItems: 'center'}}>
+                    <span className={styles.metaLabel}>M (Median)</span>
+                    <FormulaPopover 
+                      title="Mu (M)"
+                      description="The median BMI value for the reference population at this specific age and sex."
+                    />
+                 </div>
                  <span className={styles.metaValue}>{meta.lms_parameters.m}</span>
                </div>
+
                <div className={styles.metaItem}>
-                 <span className={styles.metaLabel}>S (Var)</span>
+                 <div style={{display: 'flex', alignItems: 'center'}}>
+                    <span className={styles.metaLabel}>S (Var)</span>
+                    <FormulaPopover 
+                      title="Sigma (S)"
+                      description="The coefficient of variation. It represents the spread (standard deviation) of BMI values around the median."
+                    />
+                 </div>
                  <span className={styles.metaValue}>{meta.lms_parameters.s}</span>
                </div>
              </>
