@@ -1,16 +1,16 @@
-// src/components/EncounterDetailModal.tsx
+// src/components/encounters/EncounterDetailModal.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Encounter, Observation, Patient } from '@/types'
-import { BmiResult } from '@/lib/bmi_engine'
-import { PaleyHeightResult } from '@/lib/paley_engine' // <--- IMPORT THIS
+import { BmiResult } from '@/lib/engines/bmi_engine'
+import { PaleyHeightResult } from '@/lib/engines/paley_engine' // <--- IMPORT THIS
 import { X, Plus, Calculator, ChevronDown, ChevronUp, Trash2 } from 'lucide-react'
-import BMICalculator from './BMICalculator'
-import BMIResultDisplay from './BMIResultDisplay'
-import PaleyHeightCalculator from './PaleyHeightCalculator' // <--- IMPORT THIS
-import PaleyHeightResultDisplay from './PaleyHeightResultDisplay' // <--- IMPORT THIS
+import BMICalculator from '../calculators/BMICalculator'
+import BMIResultDisplay from '../calculators/BMIResultDisplay'
+import PaleyHeightCalculator from '../calculators/PaleyHeightCalculator' // <--- IMPORT THIS
+import PaleyHeightResultDisplay from '../calculators/PaleyHeightResultDisplay' // <--- IMPORT THIS
 import styles from './EncounterDetailModal.module.css'
 
 interface EncounterDetailModalProps {

@@ -1,9 +1,10 @@
+// src/components/patients/AddPatientModal.tsx
 'use client'
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { X, CheckCircle2, AlertCircle } from 'lucide-react'
-import { validateAndExtractCNP, ROMANIAN_COUNTIES } from '@/lib/cnp'
+import { validateAndExtractCNP, ROMANIAN_COUNTIES } from '@/lib/utils/cnp'
 import styles from './AddPatientModal.module.css'
 
 type AddPatientModalProps = {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Patient } from '@/types'
-import AddPatientModal from '@/components/AddPatientModal'
+import AddPatientModal from '@/components/patients/AddPatientModal'
 import Link from 'next/link'
 import styles from './page.module.css'
 

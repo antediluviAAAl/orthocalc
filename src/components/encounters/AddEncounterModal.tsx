@@ -1,4 +1,4 @@
-// src/components/AddEncounterModal.tsx
+// src/components/encounters/AddEncounterModal.tsx
 'use client'
 
 import { useState } from 'react'

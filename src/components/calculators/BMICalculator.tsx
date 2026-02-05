@@ -1,9 +1,9 @@
-// src/components/BMICalculator.tsx
+// src/components/calculators/BMICalculator.tsx
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
 import { AlertTriangle, Info, Calendar } from 'lucide-react'
-import { calculateBMI, getDemographicContext, BmiResult } from '@/lib/bmi_engine'
+import { calculateBMI, getDemographicContext, BmiResult } from '@/lib/engines/bmi_engine'
 import BMIResultDisplay from './BMIResultDisplay'
 import styles from './BMICalculator.module.css'
 

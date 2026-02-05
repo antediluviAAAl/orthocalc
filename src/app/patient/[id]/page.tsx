@@ -1,6 +1,6 @@
 'use client'
 
-import PatientDetailView from '@/components/PatientDetailView'
+import PatientDetailView from '@/components/patients/PatientDetailView'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import PatientDetailView from '@/components/PatientDetailView'
+import PatientDetailView from '@/components/patients/PatientDetailView'
 import { X } from 'lucide-react'
 
 export default function InterceptedPatientModal({ params }: { params: { id: string } }) {

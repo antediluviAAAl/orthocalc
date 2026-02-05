@@ -1,7 +1,7 @@
-// src/components/BMIResultDisplay.tsx
+// src/components/calculators/BMIResultDisplay.tsx
 'use client'
 
-import { BmiResult } from '@/lib/bmi_engine'
+import { BmiResult } from '@/lib/engines/bmi_engine'
 import styles from './BMICalculator.module.css' 
 
 interface BMIResultDisplayProps {

@@ -1,5 +1,5 @@
-// src/lib/bmi_engine.ts
-import { CDC_LMS_DATA } from './cdc_data'
+// src/lib/engines/bmi_engine.ts
+import { CDC_LMS_DATA } from '../data/cdc_data'
 
 export type BmiCategory = 
   | 'Underweight' 

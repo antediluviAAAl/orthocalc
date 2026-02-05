@@ -1,12 +1,12 @@
-// src/components/PatientDetailView.tsx
+// src/components/patients/PatientDetailView.tsx
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Patient, Encounter } from '@/types'
 import { User, Activity, Calendar, Plus, ChevronRight } from 'lucide-react'
-import AddEncounterModal from './AddEncounterModal'
-import EncounterDetailModal from './EncounterDetailModal'
+import AddEncounterModal from '../encounters/AddEncounterModal'
+import EncounterDetailModal from '../encounters/EncounterDetailModal'
 import styles from './PatientDetailView.module.css'
 
 type Tab = 'overview' | 'clinical'

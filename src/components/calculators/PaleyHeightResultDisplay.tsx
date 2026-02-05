@@ -1,7 +1,7 @@
-// src/components/PaleyHeightResultDisplay.tsx
+// src/components/calculators/PaleyHeightResultDisplay.tsx
 'use client'
 
-import { PaleyHeightResult, formatImperial } from '@/lib/paley_engine'
+import { PaleyHeightResult, formatImperial } from '@/lib/engines/paley_engine'
 import styles from './PaleyHeightCalculator.module.css'
 
 interface PaleyHeightResultDisplayProps {

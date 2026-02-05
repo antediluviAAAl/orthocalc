@@ -1,5 +1,5 @@
-// src/lib/paley_engine.ts
-import { PALEY_HEIGHT_BOYS, PALEY_HEIGHT_GIRLS } from './paley_data'
+// src/lib/engines/paley_engine.ts
+import { PALEY_HEIGHT_BOYS, PALEY_HEIGHT_GIRLS } from '../data/paley_data'
 
 export interface PaleyHeightResult {
   multiplier: number

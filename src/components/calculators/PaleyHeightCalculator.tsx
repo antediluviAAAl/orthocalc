@@ -1,10 +1,10 @@
-// src/components/PaleyHeightCalculator.tsx
+// src/components/calculators/PaleyHeightCalculator.tsx
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
 import { Calendar } from 'lucide-react'
-import { calculatePredictedHeight, PaleyHeightResult } from '@/lib/paley_engine'
-import { getDemographicContext } from '@/lib/bmi_engine' // Reuse for chronological age calc
+import { calculatePredictedHeight, PaleyHeightResult } from '@/lib/engines/paley_engine'
+import { getDemographicContext } from '@/lib/engines/bmi_engine' // Reuse for chronological age calc
 import PaleyHeightResultDisplay from './PaleyHeightResultDisplay'
 import styles from './PaleyHeightCalculator.module.css'
 
