@@ -6,7 +6,7 @@ import { Patient } from '@/types'
 import AddPatientModal from '@/components/patients/AddPatientModal'
 import HistoryTimelineModal from '@/components/history/HistoryTimelineModal'
 import Link from 'next/link'
-import { Trash2, Pencil, BookOpenText, Plus } from 'lucide-react'
+import { Trash2, Pencil, BookOpenText, Plus, ArchiveRestore } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme/ThemeToggle'
 import { useModal } from '@/lib/context/ModalContext'
 import styles from './page.module.css'
@@ -143,6 +143,14 @@ export default function Home() {
           <h1 className={styles.pageTitle}>Patient List</h1>
         </div>
         <div className={styles.actions}>
+          <Link
+            href="/dicom-repair"
+            className={styles.repairBtn}
+            title="DICOM Scan Repair"
+          >
+            <ArchiveRestore size={18} />
+            <span>Repair DICOM</span>
+          </Link>
           <button 
             onClick={() => setIsHistoryModalOpen(true)} 
             className={styles.historyBtnIcon}
